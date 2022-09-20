@@ -5,3 +5,5 @@ RUN pip install -r /tmp/requirements.txt
 
 COPY ./app /app
 
+EXPOSE 9095
+

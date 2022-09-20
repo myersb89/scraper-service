@@ -1,10 +1,11 @@
 import requests
 import sys
 from flask import Flask, request
-from prometheus_client import generate_latest, Counter
+from prometheus_client import generate_latest, Counter, start_http_server
 
 app = Flask(__name__)
 http_get_counter = Counter('http_get', 'HTTP GETS performed', ['url','code'])
+start_http_server(9095)
 
 @app.get("/")
 def hello_world():
@@ -23,6 +24,3 @@ def scraper_service():
 
     return f"<p>HTTP response code from {url} is {r.status_code}</p>"
 
-@app.route('/metrics')
-def metrics():
-    return generate_latest()
