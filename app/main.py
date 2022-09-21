@@ -19,7 +19,7 @@ def scraper_service():
     url = data.get('url')
 
     if validators.url(url):
-        r = requests.get(url)
+        r = requests.get(url, allow_redirects=False)
         http_get_counter.labels(url=url, code=r.status_code).inc()
         return f"<p>HTTP response code from {url} is {r.status_code}</p>", 200
     else:

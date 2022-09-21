@@ -7,5 +7,5 @@ COPY ./app /app
 
 EXPOSE 9095 8080
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app.main:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app.main:scraper_app"]
 
