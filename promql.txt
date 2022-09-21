@@ -1,1 +1,11 @@
-http_requests_total
+# All combinations of status code and url for the counter
+http_get_total
+
+# Total times the scraper service has been invoked
+sum(http_get_total)
+
+# Increase in gets over the last 15 by url
+sum(increase(http_get_total[15m])) by (url)
+
+# Rate of each status code over the last minute
+sum(rate(http_get_total[1m])) by (code)

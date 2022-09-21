@@ -43,3 +43,20 @@ python generate_traffic.py
 localhost:31536
 
 ```
+
+### PromQL queries
+Some basic queries for the scraper service counter
+
+```
+# All combinations of status code and url for the counter
+http_get_total
+
+# Total times the scraper service has been invoked
+sum(http_get_total)
+
+# Increase in gets over the last 15 by url
+sum(increase(http_get_total[15m])) by (url)
+
+# Rate of each status code over the last minute
+sum(rate(http_get_total[1m])) by (code)
+```
